@@ -111,10 +111,24 @@ app.get('/categories', (req, res) =>{
 
 // });
 
-app.use(express.static(process.env.PWD || __dirname + '/public/'));
-app.get('*', (req, res) => {
-	res.sendFile(process.env.PWD || __dirname + '/public/index.html');
-})
+if(process.env.NODE_ENV == 'production'){
+
+	process.env.PWD = process.cwd();
+	app.set('views', path.join(process.env.PWD, 'public'));
+	app.use(express.static(path.join(process.env.PWD, 'public')));
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(process.env.PWD, 'public/index.html'));
+	})
+
+}else{
+
+	app.use(express.static(__dirname + '/public/'));
+	app.get('*', (req, res) => {
+		res.sendFile(__dirname + '/public/index.html');
+	})
+	
+}
+
 
 app.listen(process.env.PORT, () => {
 	console.log('Started on port ', process.env.PORT);
