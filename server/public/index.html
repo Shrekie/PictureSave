@@ -1,0 +1,74 @@
+<html ng-app="PictureSaver">
+    <head>
+
+        <!-- JQUERY -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <!-- ANGULAR -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+        <!-- CORE -->
+        <link rel="stylesheet" href="core.css">
+        <script src="core.js"></script>
+
+        <!-- META -->
+        <meta charset="utf-8">
+        <title>database-test</title>
+
+    </head>
+
+    <body ng-controller="mainController">
+
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                
+                    <div class="navbar-header">
+                            <p class="navbar-brand">
+                                PictureSaver
+                            </p>
+
+                    </div>
+                    <!-- PICTURE UPLOAD -->
+                    <div class="row">
+                        <div class="col-md-12"><input ng-model="pictureURL" type="text" class="form-control" placeholder="Picture URL"></div>
+                        <div class="col-md-12"><input ng-model="pictureDescription" type="text" class="form-control" placeholder="Description"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"><input ng-model="pictureCategory" type="text" class="form-control" placeholder="Category"></div>
+                        <div class="col-md-2"><button ng-click="newPicture()" class="btn btn-default" type="submit">Submit</button></div>
+                    </div>
+
+                    <!-- CATEGORY SELECT -->
+                    <div class="row top-buffer" ng-init="retrieveCategories()" ng-controller="categorySelector">
+
+                        <div class="col-md-4">
+                            <select multiple class="form-control">
+                                <option ng-click="clickedCategory(category)" ng-repeat="category in categories">{{category}}</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+
+         <div class="container-fluid">
+            <!-- PICTURE VIEWER -->
+            <div class="row" ng-controller="pictureViewer">
+                
+                <div ng-repeat="picture in pictures" class="col-xs-5 col-md-2 col-sm-3">
+                    <span ng-click="deleteThePicture(picture._id)" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <img width="171px" height="180px" ng-src="{{picture.URL}}" title="{{picture.description}}" class="thumbnail">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </body>
+</html>
