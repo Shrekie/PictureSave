@@ -46,9 +46,14 @@
                     <div class="row top-buffer" ng-init="retrieveCategories()" ng-controller="categorySelector">
 
                         <div class="col-md-4">
-                            <select multiple class="form-control">
-                                <option ng-click="clickedCategory(category)" ng-repeat="category in categories">{{category}}</option>
-                            </select>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="category in categories"><a ng-click="clickedCategory(category)">{{category}}</a></li>
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
