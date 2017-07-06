@@ -13,7 +13,7 @@ const pictures = [{
 }, {
 	_id: new ObjectID(),
 	URL: 'http://i.imgur.com/LRoLTlK.jpg',
-	description: 'Dog on couch with piles of money.',
+	description: 'Dog on couch with piles of moneys.',
 	category: 'Dogs'
 }
 ];
